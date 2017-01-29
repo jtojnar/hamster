@@ -167,7 +167,7 @@ def parse_fact(text, phase=None):
     if "category" in phases:
         category = re.split("[#|,]", text, 1)[0]
         if category.lstrip().startswith("@"):
-            res["category"] = category.lstrip("@ ")
+            res["category"] = category.lstrip("@ ").strip()
             return next_phase(category, "tags")
 
         return next_phase("", "tags")
