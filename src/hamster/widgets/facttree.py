@@ -534,7 +534,7 @@ class FactTree(graphics.Scene, gtk.Scrollable):
                 continue
 
 
-            g.set_color(colors["normal"])
+            g.set_color("#2e3436")
             self.date_label.show(g, rec['day'].strftime("%A\n%b %d"))
 
             g.translate(105, 0)
