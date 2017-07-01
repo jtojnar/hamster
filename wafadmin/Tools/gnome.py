@@ -8,15 +8,16 @@ from TaskGen import taskgen,before,after,feature
 n1_regexp=re.compile('<refentrytitle>(.*)</refentrytitle>',re.M)
 n2_regexp=re.compile('<manvolnum>(.*)</manvolnum>',re.M)
 def postinstall_schemas(prog_name):
-	if Build.bld.is_install:
-		dir=Build.bld.get_install_path('${SYSCONFDIR}/gconf/schemas/%s.schemas'%prog_name)
-		if not Options.options.destdir:
-			Utils.pprint('YELLOW','Installing GConf schema')
-			command='gconftool-2 --install-schema-file=%s 1> /dev/null'%dir
-			ret=Utils.exec_command(command)
-		else:
-			Utils.pprint('YELLOW','GConf schema not installed. After install, run this:')
-			Utils.pprint('YELLOW','gconftool-2 --install-schema-file=%s'%dir)
+	pass
+	# if Build.bld.is_install:
+	# 	dir=Build.bld.get_install_path('${SYSCONFDIR}/gconf/schemas/%s.schemas'%prog_name)
+	# 	if not Options.options.destdir:
+	# 		Utils.pprint('YELLOW','Installing GConf schema')
+	# 		command='gconftool-2 --install-schema-file=%s 1> /dev/null'%dir
+	# 		ret=Utils.exec_command(command)
+	# 	else:
+	# 		Utils.pprint('YELLOW','GConf schema not installed. After install, run this:')
+	# 		Utils.pprint('YELLOW','gconftool-2 --install-schema-file=%s'%dir)
 def postinstall_icons():
 	dir=Build.bld.get_install_path('${DATADIR}/icons/hicolor')
 	if Build.bld.is_install:

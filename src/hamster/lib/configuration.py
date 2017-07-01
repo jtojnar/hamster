@@ -30,7 +30,7 @@ import datetime as dt
 
 from gi.repository import GObject as gobject
 from gi.repository import Gtk as gtk
-from gi.repository import GConf as gconf
+# from gi.repository import GConf as gconf
 
 import logging
 log = logging.getLogger("configuration")
@@ -216,8 +216,8 @@ class GConfStore(gobject.GObject, Singleton):
     }
     def __init__(self):
         gobject.GObject.__init__(self)
-        self._client = gconf.Client.get_default()
-        self._client.add_dir(self.GCONF_DIR[:-1], gconf.ClientPreloadType.PRELOAD_RECURSIVE)
+        # self._client = gconf.Client.get_default()
+        # self._client.add_dir(self.GCONF_DIR[:-1], gconf.ClientPreloadType.PRELOAD_RECURSIVE)
         self._notifications = []
 
     def _fix_key(self, key):
@@ -286,13 +286,13 @@ class GConfStore(gobject.GObject, Singleton):
         key = self._fix_key(key)
 
         if key not in self._notifications:
-            self._client.notify_add(key, self._key_changed, None)
+            # self._client.notify_add(key, self._key_changed, None)
             self._notifications.append(key)
 
-        value = self._client.get(key)
-        if value is None:
-            self.set(key, default)
-            return default
+        # value = self._client.get(key)
+        # if value is None:
+        self.set(key, default)
+        return default
 
         value = self._get_value(value, default)
         if value is not None:
@@ -319,16 +319,16 @@ class GConfStore(gobject.GObject, Singleton):
         #for gconf refer to the full key path
         key = self._fix_key(key)
 
-        if vtype is bool:
-            self._client.set_bool(key, value)
-        elif vtype is str:
-            self._client.set_string(key, value)
-        elif vtype is int:
-            self._client.set_int(key, value)
-        elif vtype in (list, tuple):
-            #Save every value as a string
-            strvalues = [str(i) for i in value]
-            #self._client.set_list(key, gconf.VALUE_STRING, strvalues)
+        # if vtype is bool:
+        #     self._client.set_bool(key, value)
+        # elif vtype is str:
+        #     self._client.set_string(key, value)
+        # elif vtype is int:
+        #     self._client.set_int(key, value)
+        # elif vtype in (list, tuple):
+        #     #Save every value as a string
+        #     strvalues = [str(i) for i in value]
+        #     self._client.set_list(key, gconf.VALUE_STRING, strvalues)
 
         return True
 

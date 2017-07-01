@@ -25,7 +25,7 @@ import logging
 from dbus.lowlevel import Message
 
 gi.require_version('GConf', '2.0')
-from gi.repository import GConf as gconf
+# from gi.repository import GConf as gconf
 from gi.repository import GObject as gobject
 
 class DbusIdleListener(gobject.GObject):
@@ -100,8 +100,8 @@ class DbusIdleListener(gobject.GObject):
                 else:
                     delay_key = "/desktop/gnome/session/idle_delay"
 
-                client = gconf.Client.get_default()
-                self.timeout_minutes = client.get_int(delay_key)
+                # client = gconf.Client.get_default()
+                # self.timeout_minutes = client.get_int(delay_key)
 
             else:
                 self.screen_locked = False
